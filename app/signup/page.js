@@ -21,11 +21,11 @@ export default function Signup() {
         try {
             setLoading(true);
             const res = await axios.post('/api/users/signup', user);
-            console.log('Signup Success', res.data);
+         
             toast.success('Account Created !! 😎 ');
             router.push('/login');
         } catch (error) {
-            console.log('signup failed', error.message);
+           
             toast.error('Email or Username Already Taken try Something Else 😢');
         } finally {
             setLoading(false);

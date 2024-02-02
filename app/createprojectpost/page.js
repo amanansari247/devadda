@@ -32,7 +32,7 @@ export default function CreatePostPage() {
             };
             const res = await axios.post('/api/users/create', postData);
            
-            console.log('Post created', res.data);
+           
 
             toast.success('Post created successfully');
             router.push('/profile')

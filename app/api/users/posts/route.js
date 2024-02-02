@@ -10,7 +10,7 @@ export async function GET(){
         const projects = await Project.find();
 
         // Return the projects as a JSON response
-        console.log(projects)
+   
         return NextResponse.json( {
             status: 200,
             body: {

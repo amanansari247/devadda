@@ -21,7 +21,7 @@ export default function ProfilePage() {
     axios.get('/api/users/meuser')
       .then(response => {
         setUserDetails(response.data.data);
-        console.log('User Details',response.data)
+       
         setFormData(response.data.data); // Populate form data
       })
       .catch(error => console.error('Error fetching user details:', error));
@@ -39,7 +39,7 @@ export default function ProfilePage() {
     // Update user details in the database
     axios.put('/api/users/meuser', formData)
       .then(response => {
-        console.log('User details updated successfully:', response.data);
+        
         toast.success('User Details Updated !! 😎')
         setUserDetails(response.data.data); // Update local state with new details
         setEditMode(false); // Disable edit mode after saving

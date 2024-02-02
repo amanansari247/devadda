@@ -15,20 +15,20 @@ export async function POST(request= NextRequest){
         const reqBody = await request.json()
         const {username, email, password} = reqBody
 
-        console.log(reqBody);
+       
 
         //check if user already exists
         const user = await User.findOne({email})
-        console.log('heyy')
+       
 
         if(user){
             return NextResponse.json({error: "User already exists"}, {status: 400})
         }
-        console.log('heyy2')
+        
 
         //hash password
         
-        console.log('heyy3')
+        
         const salt =  await bcryptjs.genSalt(10);
         const hashedpassword =  await bcryptjs.hash(password , salt);
         
@@ -38,12 +38,11 @@ export async function POST(request= NextRequest){
             email,
             password: hashedpassword
         })
-        console.log('heyy4')
+        
         
 
         const savedUser = await newUser.save();
-        console.log('heyy7')
-        console.log(savedUser);
+       
 
     
 

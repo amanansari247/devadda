@@ -5,10 +5,7 @@ import bcryptjs from 'bcryptjs'
 export const sendemail = async ({email,emailtype,userId})=>{
     try {
         const hashedtoken = await bcryptjs.hash(userId.toString(), 10)
-        console.log('Hashed Token',hashedtoken)
-        console.log('Email type',emailtype);
-        console.log('email',email);
-        console.log('user id' , userId)
+        
         
 
        if(emailtype==='VERIFY'){

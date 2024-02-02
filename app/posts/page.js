@@ -10,7 +10,7 @@ export default function Posts() {
         const fetchPosts = async () => {
             try {
                 const response = await axios.get('/api/users/posts');
-                console.log(response)
+               
                 setPosts(response.data.body.projects);
             } catch (error) {
                 console.error('Error fetching posts:', error);

@@ -12,13 +12,13 @@ export async function POST(req = NextRequest) {
 
         // Parse the JSON data from the request body
         const requestBody = await req.json();
-        console.log("Parsed request body:", requestBody);
+       
 
         const { tittle, description, imageUrl, projectLink, category } = requestBody;
 
         // Get user ID from token
         const userId = await getDataFromToken(req);
-        console.log(userId)
+       
 
         // Create a new project instance
         const newProject = new Project({

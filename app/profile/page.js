@@ -22,7 +22,7 @@ export default function Profile() {
     setloogedin(true)
     try {
       const respUser = await axios.get('/api/users/meuser');
-      console.log('User details:',respUser.data);
+    
       setUserData(respUser.data);
     } catch (error) {
       console.error(error.message);

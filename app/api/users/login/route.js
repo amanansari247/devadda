@@ -11,7 +11,7 @@ export  async function POST(request=NextRequest){
   try {
     const reqbody =  await request.json();
   const {email , password} = reqbody;
-  console.log(reqbody);
+ 
   //check if user Exists
   const user = await User.findOne({email});
   if(!user){

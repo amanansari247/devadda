@@ -14,7 +14,7 @@ export default function ForgetPassword() {
             toast.success('Please Check Your Email !!')
             router.push('/checkemail')
 
-            console.log(res);
+         
         } catch (error) {
             toast.error('Email Not Registered !!')
             console.error(error);
