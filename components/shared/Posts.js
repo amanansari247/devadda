@@ -44,7 +44,7 @@ export default function Posts() {
                                 <div className="bg-purple-400 text-white py-1 px-3 rounded-t-md">{post.category}</div>
                                 <img src={post.imageUrl} alt={post.title} className="w-full h-40 object-cover" />
                                 <div className="p-4">
-                                    <h2 className="text-lg font-semibold mb-2">{truncateDescription(post.title, 20)}</h2>
+                                    <h2 className="text-lg font-semibold mb-2">{truncateDescription(post.tittle, 20)}</h2>
                                     <p className="text-sm text-gray-600 mb-2">{truncateDescription(post.description, 80)}</p>
                                 </div>
                             </div>
