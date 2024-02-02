@@ -8,15 +8,16 @@ export default function Posts() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const response = await axios.get('/api/users/posts');
-                setPosts(response.data.body.projects);
-            } catch (error) {
-                console.error('Error fetching posts:', error);
-            } finally {
-                setLoading(false);
-            }
+        const fetchPosts = () => {
+            axios.get('/api/users/posts')
+                .then(response => {
+                    setPosts(response.data.body.projects);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error('Error fetching posts:', error);
+                    setLoading(false);
+                });
         };
 
         fetchPosts();
@@ -40,9 +41,9 @@ export default function Posts() {
                         <Link href={`/posts/${post._id}`} key={post.id}>
                             <div className="bg-white shadow-md rounded-md overflow-hidden">
                                 <div className="bg-purple-400 text-white py-1 px-3 rounded-t-md">{post.category}</div>
-                                <img src={post.imageUrl} alt={post.tittle} className="w-full h-40 object-cover" />
+                                <img src={post.imageUrl} alt={post.title} className="w-full h-40 object-cover" />
                                 <div className="p-4">
-                                    <h2 className="text-lg font-semibold mb-2">{truncateDescription(post.tittle, 20)}</h2>
+                                    <h2 className="text-lg font-semibold mb-2">{truncateDescription(post.title, 20)}</h2>
                                     <p className="text-sm text-gray-600 mb-2">{truncateDescription(post.description, 80)}</p>
                                 </div>
                             </div>
