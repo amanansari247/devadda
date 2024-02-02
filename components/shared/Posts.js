@@ -24,11 +24,12 @@ export default function Posts() {
     }, []);
 
     const truncateDescription = (description, maxLength) => {
-        if (description.length > maxLength) {
+        if (description && description.length > maxLength) {
             return `${description.slice(0, maxLength)}...`;
         }
         return description;
     };
+    
 
     return (
         <div className="container mx-auto py-8">
