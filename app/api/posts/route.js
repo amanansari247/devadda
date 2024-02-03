@@ -6,29 +6,18 @@ import Project from "@/models/projectModel";
 
 await connect();
 
-
-
-export  async function GET(request = NextRequest){
+export async function GET(request = NextRequest) {
     try {
-        'use server'
-     
         const projects = await Project.find({});
-     
 
-        
-      
-       
-
-    
-
-        // Return the projects as a JSON response
-   
-        return NextResponse.json({
+        // Set cache-control header to prevent caching
+        const response = NextResponse.json({
             status: 200,
             projects
-                
-           
         });
+        response.headers.set('Cache-Control', 'no-store');
+
+        return response;
     } catch (error) {
         // If an error occurs, return an error response
         return NextResponse.json({
@@ -38,5 +27,4 @@ export  async function GET(request = NextRequest){
             }
         });
     }
-
 }
