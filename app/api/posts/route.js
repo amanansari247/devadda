@@ -11,9 +11,10 @@ connect();
 export  async function GET(request = NextRequest){
     try {
      
-        const projects = await Project.find();
-        const userId = await getDataFromToken(request);
-    const user = await User.findOne({ _id: userId }).select('-password');
+        const projects = await Project.find({});
+        console.log('Projects',projects)
+
+        
       
        
 
