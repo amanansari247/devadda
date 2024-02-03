@@ -2,11 +2,9 @@ import Project from "@/models/projectModel";
 import { connect } from "@/dbConfig/dbconfig";
 import { NextRequest , NextResponse } from "next/server";
 
-
-
 connect();
 
-export  async function GET(request = NextRequest){
+export  async function GET(req=NextRequest ,res = NextResponse){
     try {
      
         const projects = await Project.find();
@@ -14,7 +12,7 @@ export  async function GET(request = NextRequest){
 
         // Return the projects as a JSON response
    
-        return NextResponse.json( {
+        return NextResponse.json({
             status: 200,
             body: {
                 projects
