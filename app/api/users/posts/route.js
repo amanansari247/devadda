@@ -1,4 +1,4 @@
-'use server'
+
 import Project from "@/models/projectModel";
 import { connect } from "@/dbConfig/dbconfig";
 import { NextRequest , NextResponse } from "next/server";
