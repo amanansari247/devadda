@@ -28,6 +28,7 @@ export const config = {
     '/resetpassword',
     '/checkemail',
     '/posts/:path*',
-    '/home'
+    '/home',
+    '/posts'
   ],
 }

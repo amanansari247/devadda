@@ -8,6 +8,7 @@ export async function GET(){
     try {
         // Fetch all projects from the database
         const projects = await Project.find();
+    
 
         // Return the projects as a JSON response
    
