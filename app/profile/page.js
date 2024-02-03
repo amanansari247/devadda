@@ -17,8 +17,8 @@ export default function Profile() {
 
 
   useEffect(() => {
-      const fetchPosts = () => {
-          axios.get('/api/posts')
+      
+           axios.get('/api/posts')
               .then(response => {
                   setPosts(response.data.body.projects);
                   setLoading(false);
@@ -28,9 +28,9 @@ export default function Profile() {
                   console.error('Error fetching posts:', error);
                   setLoading(false);
               });
-      };
+    
 
-      fetchPosts();
+    
   }, []);
 
   const truncateDescription = (description, maxLength) => {
