@@ -70,12 +70,7 @@ export default function Profile() {
 
   return (
     <div className="flex min-h-screen flex-col items-center p-10 sm:p-24">
-     <button
-                        className="bg-purple-500 text-white font-bold py-2 mt-4 px-4 rounded"
-                        onClick={logout}
-                    >
-                        Logout
-                    </button>
+    <HeaderLogout/>
       
        
       <div className="container mx-auto py-8">
