@@ -18,6 +18,7 @@ const HeaderLogout = () => {
             await axios.get('/api/users/logout').then(
                 response => {
                    router.push('/')
+                   console.log('user looged in',response);
                 }
             ).catch(error => {
                   console.error('Error fetching posts:', error);
