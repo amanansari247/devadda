@@ -1,53 +1,38 @@
-"use client"
+'use client'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import toast from 'react-hot-toast/headless';
-import { useRouter } from 'next/navigation';
-import Header from '@/components/shared/Header';
-import HeaderLogout from '@/components/shared/HeaderLogout';
-import Posts from '@/components/shared/Posts';
 
-export default function Profile() {
-  
-  const router = useRouter();
- 
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function Posts() {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        const fetchPosts = () => {
+            axios.get('/api/users/posts')
+                .then(response => {
+                    setPosts(response.data.body.projects);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error('Error fetching posts:', error);
+                    setLoading(false);
+                });
+        };
 
-  useEffect(() => {
-      const fetchPosts = () => {
-          axios.get('/api/posts')
-              .then(response => {
-                  setPosts(response.data.body.projects);
-                  setLoading(false);
-                 
-              })
-              .catch(error => {
-                  console.error('Error fetching posts:', error);
-                  setLoading(false);
-              });
-      };
+        fetchPosts();
+    }, []);
 
-      fetchPosts();
-  }, []);
+    const truncateDescription = (description, maxLength) => {
+        if (description && description.length > maxLength) {
+            return `${description.slice(0, maxLength)}...`;
+        }
+        return description;
+    };
+    
 
-  const truncateDescription = (description, maxLength) => {
-      if (description && description.length > maxLength) {
-          return `${description.slice(0, maxLength)}...`;
-      }
-      return description;
-  };
-
-  
-
-  return (
-    <div className="flex min-h-screen flex-col items-center p-10 sm:p-24">
-    <HeaderLogout/>
-      
-       
-      <div className="container mx-auto py-8">
+    return (
+        <div className="container mx-auto py-8">
             <h1 className="text-3xl font-bold mb-4">All Posts</h1>
             {loading ? (
                 <p className="text-lg text-gray-600">Loading posts...</p>
@@ -68,8 +53,5 @@ export default function Profile() {
                 </div>
             )}
         </div>
-       
-      </div>
-  
-  );
+    );
 }
