@@ -12,6 +12,7 @@ export  async function GET(request = NextRequest) {
             httpOnly: true,
             expires: new Date(0)
         });
+        console.log(resp.cookies)
 
         return resp;
     } catch (error) {

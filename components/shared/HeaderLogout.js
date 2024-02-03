@@ -8,6 +8,7 @@ import axios from 'axios'
 const HeaderLogout = () => {
     const router = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -22,7 +23,7 @@ const HeaderLogout = () => {
                 }
             ).catch(error => {
                   console.error('Error fetching posts:', error);
-                  setLoading(false);
+                  
               });
     };
 
