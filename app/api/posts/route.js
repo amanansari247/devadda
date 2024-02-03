@@ -4,7 +4,7 @@ import User from "@/models/useModel";
 import { connect } from "@/dbConfig/dbconfig";
 import Project from "@/models/projectModel";
 
-connect();
+await connect();
 
 
 
