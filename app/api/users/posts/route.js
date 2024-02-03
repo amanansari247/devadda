@@ -4,7 +4,7 @@ import { NextRequest , NextResponse } from "next/server";
 
 connect();
 
-export async function GET(){
+export default async function GET(request = NextRequest){
     try {
         // Fetch all projects from the database
         const projects = await Project.find();
