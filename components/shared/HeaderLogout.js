@@ -15,15 +15,7 @@ const HeaderLogout = () => {
 
     const logout = async () => {
         try {
-            await axios.get('/api/users/logout',{
-                headers:{
-                    'Cache-Control': 'no-cache',
-                    'Expires': '0'
-                },
-                next:{
-                    revalidate:10
-                }
-            });
+            await axios.get('/api/users/logout');
              router.push('/');
         } catch (error) {
             console.error(error.message);
