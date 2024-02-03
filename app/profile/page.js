@@ -19,7 +19,15 @@ export default function Profile() {
 
   useEffect(() => {
       
-           axios.get('/api/posts')
+           axios.get('/api/posts',{
+            headers:{
+                'Cache-Control': 'no-cache',
+                'Expires': '0'
+            },
+            next:{
+                revalidate:10
+            }
+           })
               .then(response => {
                   setPosts(response.data.projects);
                   console.log('userssssss', response)

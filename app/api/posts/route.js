@@ -12,7 +12,7 @@ export  async function GET(request = NextRequest){
     try {
      
         const projects = await Project.find({});
-        console.log('Projects',projects)
+     
 
         
       
