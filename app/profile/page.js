@@ -38,6 +38,7 @@ export default  function Profile() {
                   console.error('Error fetching posts:', error);
                   setLoading(false);
               });
+              router.refresh()
     
 
     

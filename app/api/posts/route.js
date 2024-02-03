@@ -10,6 +10,7 @@ await connect();
 
 export  async function GET(request = NextRequest){
     try {
+        'use server'
      
         const projects = await Project.find({});
      
