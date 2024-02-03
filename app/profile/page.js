@@ -26,8 +26,7 @@ export default function Profile() {
             'Cache-Control': 'no-cache',
           },
           next:{
-           
-            tags: ['collection']
+            revalidate:10
           }
         });
   
