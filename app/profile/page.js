@@ -6,46 +6,32 @@ import toast from 'react-hot-toast/headless';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/shared/Header';
 import HeaderLogout from '@/components/shared/HeaderLogout';
-import Posts from '@/components/shared/Posts';
+
 
 export default function Profile() {
   
   const router = useRouter();
-  const [userData, setUserData] = useState(null);
-  const [loogedin,setloogedin] = useState(true);
+ 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch('/api/users/posts', {
-          method: 'GET',
-          headers: {
-            'Cache-Control': 'no-cache',
-          },
-          next:{
-            revalidate:10
-          }
-        });
-  
-        if (!response.ok) {
-          throw new Error('Failed to fetch posts');
-        }
-  
-        const data = await response.json();
-        setPosts(data.body.projects);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        setLoading(false);
-      }
-    };
-  
-    fetchPosts();
+      const fetchPosts = () => {
+          axios.get('/api/users/posts')
+              .then(response => {
+                  setPosts(response.data.body.projects);
+                  setLoading(false);
+                 
+              })
+              .catch(error => {
+                  console.error('Error fetching posts:', error);
+                  setLoading(false);
+              });
+      };
+
+      fetchPosts();
   }, []);
-  
 
   const truncateDescription = (description, maxLength) => {
       if (description && description.length > maxLength) {
@@ -54,32 +40,7 @@ export default function Profile() {
       return description;
   };
 
-  useEffect(() => {
-    getDetails();
-  }, []);
-
-  const getDetails = async () => {
-    setloogedin(true)
-    try {
-      const respUser = await axios.get('/api/users/meuser');
-    
-      setUserData(respUser.data);
-    } catch (error) {
-      console.error(error.message);
-      toast.error(error.message);
-    }
-  };
-
-  const logout = async () => {
-    try {
-      await axios.get('/api/users/logout');
-      toast.success('Logout Successful');
-      router.push('/');
-    } catch (error) {
-      console.error(error.message);
-      toast.error(error.message);
-    }
-  };
+  
 
   return (
     <div className="flex min-h-screen flex-col items-center p-10 sm:p-24">
@@ -92,7 +53,7 @@ export default function Profile() {
                 <p className="text-lg text-gray-600">Loading posts...</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {  posts.map(post => (
+                    {posts.map(post => (
                         <Link href={`/posts/${post._id}`} key={post.id}>
                             <div className="bg-white shadow-md rounded-md overflow-hidden">
                                 <div className="bg-purple-400 text-white py-1 px-3 rounded-t-md">{post.category}</div>
