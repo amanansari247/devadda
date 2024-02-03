@@ -14,12 +14,15 @@ const HeaderLogout = () => {
     };
 
     const logout = async () => {
-        try {
-            await axios.get('/api/users/logout');
-             router.push('/');
-        } catch (error) {
-            console.error(error.message);
-        }
+       
+            await axios.get('/api/users/logout').then(
+                response => {
+                   router.push('/')
+                }
+            ).catch(error => {
+                  console.error('Error fetching posts:', error);
+                  setLoading(false);
+              });
     };
 
     return (
