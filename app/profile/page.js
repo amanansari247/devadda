@@ -16,6 +16,7 @@ export default function Profile() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
       const fetchPosts = () => {
           axios.get('/api/users/posts')
@@ -68,7 +69,12 @@ export default function Profile() {
 
   return (
     <div className="flex min-h-screen flex-col items-center p-10 sm:p-24">
-      <HeaderLogout/>
+     <button
+                        className="bg-purple-500 text-white font-bold py-2 mt-4 px-4 rounded"
+                        onClick={logout}
+                    >
+                        Logout
+                    </button>
       
        
       <div className="container mx-auto py-8">
