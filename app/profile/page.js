@@ -19,7 +19,7 @@ export default function Profile() {
 
   useEffect(() => {
       const fetchPosts = () => {
-          axios.get('/api/users/posts',{ cache: 'no-cache' })
+          axios.get('/api/users/posts')
               .then(response => {
                   setPosts(response.data.body.projects);
                   setLoading(false);
@@ -79,7 +79,7 @@ export default function Profile() {
                 <p className="text-lg text-gray-600">Loading posts...</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {posts.map(post => (
+                    {  posts.map(post => (
                         <Link href={`/posts/${post._id}`} key={post.id}>
                             <div className="bg-white shadow-md rounded-md overflow-hidden">
                                 <div className="bg-purple-400 text-white py-1 px-3 rounded-t-md">{post.category}</div>
