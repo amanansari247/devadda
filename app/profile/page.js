@@ -19,10 +19,11 @@ export default function Profile() {
 
   useEffect(() => {
       const fetchPosts = () => {
-          axios.get('/api/users/posts')
+          axios.get('/api/users/posts',{ cache: 'no-store' })
               .then(response => {
                   setPosts(response.data.body.projects);
                   setLoading(false);
+                 
               })
               .catch(error => {
                   console.error('Error fetching posts:', error);
