@@ -18,21 +18,34 @@ export default function Profile() {
 
 
   useEffect(() => {
-      const fetchPosts = () => {
-          axios.get('/api/users/posts')
-              .then(response => {
-                  setPosts(response.data.body.projects);
-                  setLoading(false);
-                 
-              })
-              .catch(error => {
-                  console.error('Error fetching posts:', error);
-                  setLoading(false);
-              });
-      };
-
-      fetchPosts();
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/api/users/posts', {
+          method: 'GET',
+          headers: {
+            'Cache-Control': 'no-cache',
+          },
+          next:{
+            revalidate:60
+          }
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to fetch posts');
+        }
+  
+        const data = await response.json();
+        setPosts(data.body.projects);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        setLoading(false);
+      }
+    };
+  
+    fetchPosts();
   }, []);
+  
 
   const truncateDescription = (description, maxLength) => {
       if (description && description.length > maxLength) {

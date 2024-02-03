@@ -8,8 +8,7 @@ connect();
 
 export  async function GET(request = NextRequest){
     try {
-        // Fetch all projects from the database
-        const user =  getDataFromToken(request)
+        
         const projects = await Project.find();
     
 
