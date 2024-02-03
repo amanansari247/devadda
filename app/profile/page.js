@@ -19,7 +19,7 @@ export default function Profile() {
 
   useEffect(() => {
       const fetchPosts = () => {
-          axios.get('/api/users/posts',{ cache: 'no-store' })
+          axios.get('/api/users/posts',{ cache: 'no-cache' })
               .then(response => {
                   setPosts(response.data.body.projects);
                   setLoading(false);
