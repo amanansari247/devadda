@@ -1,14 +1,15 @@
-'use serverless'
+'use server'
 import Project from "@/models/projectModel";
 import { connect } from "@/dbConfig/dbconfig";
 import { NextRequest , NextResponse } from "next/server";
 import { getDataFromToken } from "@/helpers/getDatafromToken";
+import { revalidateTag } from 'next/cache'
 
 connect();
 
 export  async function GET(request = NextRequest){
     try {
-        
+        revalidateTag('collection')
         const projects = await Project.find();
     
 
