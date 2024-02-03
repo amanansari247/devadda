@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import Header from '@/components/shared/Header';
 import HeaderLogout from '@/components/shared/HeaderLogout';
 import Posts from '@/components/shared/Posts';
 
-export default function Profile() {
+export default  function Profile() {
   
   const router = useRouter();
  
@@ -22,7 +22,7 @@ export default function Profile() {
            axios.get('/api/posts',{
             headers:{
                 'Cache-Control': 'no-cache',
-                'Expires': '0'
+                
             },
             next:{
                 revalidate:10
