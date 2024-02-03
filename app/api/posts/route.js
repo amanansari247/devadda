@@ -1,26 +1,31 @@
-import Project from "@/models/projectModel";
-import { connect } from "@/dbConfig/dbconfig";
+import { getDataFromToken } from "@/helpers/getDatafromToken";
+import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/useModel";
-import { NextRequest , NextResponse } from "next/server";
+import { connect } from "@/dbConfig/dbconfig";
+import Project from "@/models/projectModel";
 
 connect();
 
-export  async function GET(req=NextRequest ,res = NextResponse){
+
+
+export  async function GET(request = NextRequest){
     try {
      
         const projects = await Project.find();
-        // const userId = await getDataFromToken(request);
-        // const user = await User.findOne({ _id: userId }).select('-password');
+        const userId = await getDataFromToken(request);
+    const user = await User.findOne({ _id: userId }).select('-password');
+      
+       
+
     
 
         // Return the projects as a JSON response
    
         return NextResponse.json({
             status: 200,
-            body: {
-                projects
+            projects
                 
-            }
+           
         });
     } catch (error) {
         // If an error occurs, return an error response
