@@ -2,29 +2,36 @@ import { getDataFromToken } from "@/helpers/getDatafromToken";
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/useModel";
 import { connect } from "@/dbConfig/dbconfig";
-import Project from "@/models/projectModel";
 
-await connect();
+connect();
 
 export async function GET(request = NextRequest) {
-    try {
-        const projects = await Project.find({});
+  try {
+    console.log('request in userssssssss ', request)
+    const userId = await getDataFromToken(request);
+    const user = await User.findOne({ _id: userId }).select('-password');
+   
+    return NextResponse.json({ message: 'user found', data: user });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 400 });
+  }
+}
 
-        // Set cache-control header to prevent caching
-        const response = NextResponse.json({
-            status: 200,
-            projects
-        });
-        response.headers.set('Cache-Control', 'no-store');
+export async function PUT(request = NextRequest) {
+  try {
+    const userId = await getDataFromToken(request);
+    const reqBody = await request.json();
 
-        return response;
-    } catch (error) {
-        // If an error occurs, return an error response
-        return NextResponse.json({
-            status: 500,
-            body: {
-                error: "Internal Server Error"
-            }
-        });
-    }
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: userId },
+      reqBody,
+      { new: true } // Return the modified document rather than the original
+    );
+
+  
+    
+    return NextResponse.json({ message: 'User updated successfully', data: updatedUser });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 400 });
+  }
 }

@@ -16,9 +16,9 @@ export  async function GET(request = NextRequest){
    
         return NextResponse.json( {
             status: 200,
-            body: {
+            
                 projects
-            }
+           
         });
     } catch (error) {
         // If an error occurs, return an error response

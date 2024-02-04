@@ -19,7 +19,7 @@ export default  function Profile() {
 
   useEffect(() => {
       
-           axios.get('/api/posts',{
+           axios.get('/api/users/posts',{
             headers:{
                 'Cache-Control': 'no-cache',
                 
