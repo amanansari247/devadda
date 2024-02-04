@@ -9,7 +9,7 @@ export default function Posts() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await axios.get('/api/users/posts');
+                const response = await axios.get('/api/posts');
                
                 setPosts(response.data.body.projects);
             } catch (error) {

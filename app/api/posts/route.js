@@ -1,5 +1,6 @@
 import { getDataFromToken } from "@/helpers/getDatafromToken";
 import { NextRequest, NextResponse } from "next/server";
+import Project from "@/models/projectModel";
 import User from "@/models/useModel";
 import { connect } from "@/dbConfig/dbconfig";
 
@@ -7,11 +8,12 @@ connect();
 
 export async function GET(request = NextRequest) {
   try {
-    console.log('request in userssssssss ', request)
+   
     const userId = await getDataFromToken(request);
     const user = await User.findOne({ _id: userId }).select('-password');
+    const projects = await Project.find();
    
-    return NextResponse.json({ message: 'user found', data: user });
+    return NextResponse.json({ message: 'user found', projects,user });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
