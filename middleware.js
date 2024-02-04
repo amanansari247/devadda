@@ -28,6 +28,8 @@ export const config = {
     '/checkemail',
     '/posts/:path*',
     '/home',
-    '/posts'
+    '/posts',
+    '/yourposts',
+    '/yourposts/:path*'
   ],
 };

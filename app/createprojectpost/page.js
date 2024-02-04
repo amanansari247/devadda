@@ -34,8 +34,10 @@ export default function CreatePostPage() {
            
            
 
-            toast.success('Post created successfully');
-            router.push('/profile')
+            toast.success('Post created successfully 😁');
+            setTimeout(() => {
+                router.push('/profile')
+             }, 1000);
         } catch (error) {
             console.error('Post creation failed', error.message);
             toast.error('Failed to create post');
@@ -137,19 +139,16 @@ export default function CreatePostPage() {
                     <label htmlFor="category" className="block text-sm font-medium text-gray-700">
                         Category
                     </label>
-                    <select
+                    <input
+                        type="category"
                         id="category"
                         name="category"
                         value={post.category}
                         onChange={handleInputChange}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         required
-                    >
-                        <option value="">Select a category</option>
-                        <option value="Web Development">Web Development</option>
-                        <option value="App Development">App Development</option>
-                        {/* Add more options for different technologies */}
-                    </select>
+                    />
+                    
                 </div>
             </div>
             <button

@@ -52,9 +52,10 @@ const HeaderLogout = () => {
                     </button>
                 </div>
                 <nav className={`md:flex md:items-center space-x-4 ${isMenuOpen ? 'block' : 'hidden'}`}>
-                    <ul className=' absolute sm:relative bg-white sm:bg-inherit flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4'>
+                    <ul className=' absolute sm:relative bg-white p-4 sm:p-0 sm:bg-inherit flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4'>
                         <li><Link href='/profile'>Home</Link></li>
                         <li><Link href='/createprojectpost'>Create post</Link></li>
+                        <li><Link href='/yourposts'>Your Posts</Link></li>
                         <li><Link href='/profile/user'>Profile</Link></li>
                     </ul>
                 </nav>
