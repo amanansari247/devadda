@@ -33,7 +33,7 @@ export const sendemail = async ({email,emailtype,userId})=>{
         to : email,
         subject: emailtype === 'VERIFY' ? "Verify Your Email" : "Reset Your Password",
         html: `<p>Click <a href="${process.env.domain}/${emailtype=== 'VERIFY' ? 'verifyemail':'resetpassword'}?token=${hashedtoken}">here</a> to ${emailtype === "VERIFY" ? "verify your email" : "reset your password"}
-            or copy and paste the link below in your browser. <br> ${process.env.DOMAIN}/${emailtype=== 'VERIFY' ? 'verifyemail':'resetpassword'}?token=${hashedtoken}
+            or copy and paste the link below in your browser. <br> ${process.env.domain}/${emailtype=== 'VERIFY' ? 'verifyemail':'resetpassword'}?token=${hashedtoken}
             </p>`
       })
      ;
