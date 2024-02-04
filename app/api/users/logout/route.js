@@ -1,20 +1,17 @@
 import { NextResponse,NextRequest } from "next/server";
+import { cookies } from 'next/headers'
 
-export  async function GET(request = NextRequest) {
+export  async function GET(request = NextRequest,resp=NextResponse) {
     try {
-        console.log('Resp',request)
-        const resp = NextResponse.json({
-            message: 'Logout Successfully',
-            success: true
-        });
+        
 
-        resp.cookies.set("token", "", {
+        cookies().set("token", "", {
             httpOnly: true,
             expires: new Date(0)
         });
-        console.log(resp.cookies)
+        
 
-        return resp;
+        return NextResponse.json({message:'looged out',status:200});
     } catch (error) {
         return NextResponse.json({ error: error.message }, { status: 400 });
     }
