@@ -20,6 +20,7 @@ const HeaderLogout = () => {
                 response => {
                    router.push('/')
                    console.log('user looged in',response);
+                   router.refresh()
                 }
             ).catch(error => {
                   console.error('Error fetching posts:', error);
